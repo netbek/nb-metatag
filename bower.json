@@ -20,6 +20,7 @@
 		"vendor"
 	],
 	"dependencies": {
+		"angular": "~1.2.28",
 		"nb-lodash": "https://github.com/netbek/nb-lodash.git#master",
 		"nb-token": "https://github.com/netbek/nb-token.git#master"
 	}
