@@ -21,38 +21,40 @@
 		var config = {
 			delimiter: ':', // Meta tag path delimiter
 			defaults: {
-				title: undefined,
-				abstract: undefined,
-				description: undefined,
-				keywords: undefined,
-				copyright: undefined,
-				og: {
+				global: {
 					title: undefined,
+					abstract: undefined,
 					description: undefined,
-					url: undefined,
-					type: undefined,
-					image: {
-						facebook: {
-							url: undefined,
-							width: undefined,
-							height: undefined
-						},
-						linkedin: {
-							url: undefined,
-							width: undefined,
-							height: undefined
+					keywords: undefined,
+					copyright: undefined,
+					og: {
+						title: undefined,
+						description: undefined,
+						url: undefined,
+						type: undefined,
+						image: {
+							facebook: {
+								url: undefined,
+								width: undefined,
+								height: undefined
+							},
+							linkedin: {
+								url: undefined,
+								width: undefined,
+								height: undefined
+							}
 						}
-					}
-				},
-				twitter: {
-					card: undefined,
-					site: undefined,
-					creator: undefined,
-					image: undefined
-				},
-				mobile_web_app_capable: undefined,
-				apple_mobile_web_app_capable: undefined,
-				apple_mobile_web_app_title: undefined
+					},
+					twitter: {
+						card: undefined,
+						site: undefined,
+						creator: undefined,
+						image: undefined
+					},
+					mobile_web_app_capable: undefined,
+					apple_mobile_web_app_capable: undefined,
+					apple_mobile_web_app_title: undefined
+				}
 			}
 		};
 		return {
@@ -69,8 +71,8 @@
 		var initialized = false;
 
 		return {
-			$get: ['$rootScope', '$q', 'nbToken', 'nbMetatagConfig', '_',
-				function ($rootScope, $q, nbToken, nbMetatagConfig, _) {
+			$get: ['$rootScope', '$q', 'nbToken', 'nbMetatagConfig',
+				function ($rootScope, $q, nbToken, nbMetatagConfig) {
 					// Bind events.
 					$rootScope.$on('$stateChangeStart', function () {
 						reset();
@@ -80,7 +82,7 @@
 					 * Resets metatags to default values.
 					 */
 					function reset () {
-						$rootScope.metatag = nbToken.replace(_.cloneDeep(nbMetatagConfig.defaults));
+						$rootScope.metatag = nbToken.replace(window.merge(true, nbMetatagConfig.defaults.global));
 					}
 
 					return {
