@@ -19,47 +19,47 @@
 
 	function nbMetatagConfig () {
 		var config = {
-			delimiter: ':', // Meta tag path delimiter
-			defaults: {
-				global: {
-					title: undefined,
-					abstract: undefined,
-					description: undefined,
-					keywords: undefined,
-					copyright: undefined,
-					og: {
-						title: undefined,
-						description: undefined,
-						url: undefined,
-						type: undefined,
-						image: {
-							facebook: {
-								url: undefined,
-								width: undefined,
-								height: undefined
+			'delimiter': ':', // Meta tag path delimiter
+			'defaults': {
+				'global': {
+					'title': undefined,
+					'abstract': undefined,
+					'description': undefined,
+					'keywords': undefined,
+					'copyright': undefined,
+					'og': {
+						'title': undefined,
+						'description': undefined,
+						'url': undefined,
+						'type': undefined,
+						'image': {
+							'facebook': {
+								'url': undefined,
+								'width': undefined,
+								'height': undefined
 							},
-							linkedin: {
-								url: undefined,
-								width: undefined,
-								height: undefined
+							'linkedin': {
+								'url': undefined,
+								'width': undefined,
+								'height': undefined
 							}
 						}
 					},
-					twitter: {
-						card: undefined,
-						site: undefined,
-						creator: undefined,
-						image: undefined
+					'twitter': {
+						'card': undefined,
+						'site': undefined,
+						'creator': undefined,
+						'image': undefined
 					},
-					mobile_web_app_capable: undefined,
-					apple_mobile_web_app_capable: undefined,
-					apple_mobile_web_app_title: undefined
+					'mobile_web_app_capable': undefined,
+					'apple_mobile_web_app_capable': undefined,
+					'apple_mobile_web_app_title': undefined
 				}
 			}
 		};
 		return {
 			set: function (values) {
-				config = window.merge(true, config, values);
+				_.merge(config, values);
 			},
 			$get: function () {
 				return config;
@@ -82,7 +82,7 @@
 					 * Resets metatags to default values.
 					 */
 					function reset () {
-						$rootScope.metatag = nbToken.replace(window.merge(true, nbMetatagConfig.defaults.global));
+						$rootScope.metatag = nbToken.replace(_.merge({}, nbMetatagConfig.defaults.global));
 					}
 
 					return {
