@@ -82,7 +82,7 @@
 					 * Resets metatags to default values.
 					 */
 					function reset () {
-						$rootScope.metatag = nbToken.replace(_.merge({}, nbMetatagConfig.defaults.global));
+						$rootScope.metatag = nbToken.replace(_.cloneDeep(nbMetatagConfig.defaults.global));
 					}
 
 					return {
